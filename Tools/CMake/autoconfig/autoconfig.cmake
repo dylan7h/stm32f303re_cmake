@@ -57,7 +57,7 @@ function(end_autoconfig base_directory)
             # =====================================================
             # Read & Config Doxy Template
             # =====================================================
-            file(READ "${CMAKE_HOME_DIRECTORY}/CMake/autoconfig/doxy/header.txt" HEADER_DOXY)
+            file(READ "${CMAKE_HOME_DIRECTORY}/Tools/CMake/autoconfig/doxy/header.txt" HEADER_DOXY)
             string(REPLACE "[file-name]" "autoconfig.h" HEADER_DOXY ${HEADER_DOXY})
             string(REPLACE "[date]" "${AUTOCONFIG_GENERATED_DATE}" HEADER_DOXY ${HEADER_DOXY})
 

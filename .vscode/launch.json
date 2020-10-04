@@ -11,10 +11,10 @@
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
-            "svdFile": "${workspaceRoot}/Debug/Device/STMicroelectronics_CMSIS_SVD/STM32F303.svd",
+            "svdFile": "${workspaceRoot}/Tools/Debug/Device/STMicroelectronics_CMSIS_SVD/STM32F303.svd",
             "configFiles": [
-                "${workspaceRoot}/Debug/scripts/interface/stlink-v2-1.cfg",
-                "${workspaceRoot}/Debug/scripts/board/st_nucleo_f3.cfg"
+                "${workspaceRoot}/Tools/Debug/scripts/interface/stlink-v2-1.cfg",
+                "${workspaceRoot}/Tools/Debug/scripts/board/st_nucleo_f3.cfg"
             ],
             "toolchainPrefix": "arm-none-eabi",
             "armToolchainPath": "/usr/local/gcc-arm-none-eabi-9-2020-q2-update/bin/"

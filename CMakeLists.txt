@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.15)
 # [ Include setting & config path ]
 # ======================================
 include("setting.cmake")
-include("CMake/path.cmake")
+include("Tools/CMake/path.cmake")
 
 # ======================================
 # [ Project Definition ]
@@ -58,7 +58,7 @@ set(CMAKE_EXE_LINKER_FLAGS  "")
 #   - 08. compile_option
 #   - 09. link_option
 # ======================================
-include("config.cmake")
+include("Src/config.cmake")
 
 # =====================================================
 # Build Executable(target.axf | target.elf)
@@ -94,4 +94,4 @@ endif()
 # ======================================
 # [ End 'autoconfig.h' generation ]
 # ======================================
-end_autoconfig("${CMAKE_HOME_DIRECTORY}/Include")
+end_autoconfig("${CMAKE_HOME_DIRECTORY}/Src/Include")
