@@ -1,17 +1,59 @@
 # ==========================================
 # [ select compiler spec : -spec=<name> ]
-# aprofile-validation-v2m.specs
-# aprofile-validation.specs
-# aprofile-ve-v2m.specs
-# aprofile-ve.specs
-# iq80310.specs
-# linux.specs
-# nano.specs
-# nosys.specs
-# pid.specs
-# rdimon-v2m.specs
-# rdimon.specs
-# rdpmon.specs
-# redboot.specs
+# [x] linux.specs
+# [O] nano.specs
+# [O] nosys.specs
 # ==========================================
-set(SPEC        "nano.specs")
+set(SPEC        nano.specs)
+if(${SPEC} STREQUAL "nano.specs")
+    # standard c library such as <stdio.h>, <stdlib.h> abs <string.h> ... 
+    list(APPEND LINK_LIBRARY "c")
+    # standard c math library such as <math.h>, <complex.h> and <fenv.h> ...
+    list(APPEND LINK_LIBRARY "m")
+    list(APPEND LINK_LIBRARY "nosys")
+
+elseif(${SPEC} STREQUAL "nosys.specs")
+    list(APPEND LINK_LIBRARY        "gcc")
+    list(APPEND EXE_LINKER_FLAGS    "-nostartfiles")
+    list(APPEND EXE_LINKER_FLAGS    "-nostdlib")
+    list(APPEND EXE_LINKER_FLAGS    "-nodefaultlibs")
+    list(APPEND EXE_LINKER_FLAGS    "-static")
+else()
+    message(FATAL_ERROR "Specifications not supported")
+endif()
+
+# ==========================================
+# [ Set Global Definitions : <compiler> -D<definitions> ]
+# ==========================================
+if(${CMAKE_BUILD_TYPE} MATCHES Debug OR ${CMAKE_BUILD_TYPE} MATCHES RelWithDebInfo)
+    list(APPEND CMAKE_DEFINITIONS _DEBUG)
+    list(APPEND CMAKE_DEFINITIONS DEBUG)
+endif()
+
+list(APPEND CMAKE_DEFINITIONS ${TARGET_BOARD}) 
+
+# ==========================================
+# [ Set Global ASM FLAGS ]
+# ==========================================
+list(APPEND ASM_FLAGS "-Wall")
+list(APPEND ASM_FLAGS "-fdata-sections")
+list(APPEND ASM_FLAGS "-ffunction-sections")
+
+# ==========================================
+# [ Set Global C FLAGS ]
+# ==========================================
+list(APPEND C_FLAGS "-Wall")
+list(APPEND C_FLAGS "-fdata-sections")
+list(APPEND C_FLAGS "-ffunction-sections")
+
+# ==========================================
+# [ Set Global CXX FLAGS ]
+# ==========================================
+list(APPEND CXX_FLAGS "-Wall")
+list(APPEND CXX_FLAGS "-fdata-sections")
+list(APPEND CXX_FLAGS "-ffunction-sections")
+
+# ==========================================
+# [ Set Global Linker FLAGS ]
+# ==========================================
+list(APPEND EXE_LINKER_FLAGS )

@@ -1,76 +1,75 @@
 # ======================================
-# [ Set toolchain root path  ]
+# [ Configuration Information ]
+#   - 01. working_dir
+#   - 02. target_name
+#   - 03. linker_script
+#   - 04. include_path
+#   - 05. library_path
+#   - 06. source_lists
+#   - 07. library_lists
+#   - 08. compile_definitions
+#   - 08. compile_option
+#   - 09. link_option
 # ======================================
-set(tools               "/usr/local/gcc-arm-none-eabi-9-2020-q2-update")
 
 # ======================================
-# [ Select Compiler ]
-# - arm_none_eabi
-# - armcompiler4
-# - armcompiler6
-# - clang
+#   - 01. working_dir
 # ======================================
-set(COMPILER            "arm_none_eabi")
+set(working_dir         "${BUILD_OUTPUT_DIR}")
 
 # ======================================
-# [ Select Architecure ]
-# - arm_none_eabi
-# <compiler> -mcpu
+#   - 02. target_name
 # ======================================
-set(CPU                 "cortex-m4")
+set(target_name         "${CMAKE_PROJECT_NAME}")
 
 # ======================================
-# [ Select CPU ]
-# - arm_none_eabi
-# <compiler> -mcpu
+#   - 03. linker_script
 # ======================================
-set(CPU                 "cortex-m4")
+set(linker_script       "${CMAKE_SOURCE_DIR}/startup/GNU/STM32F303RETx_FLASH.ld")
 
 # ======================================
-# [ Select FPU ]
-# <compiler> -mfpu
+#   - 04. include_path
 # ======================================
-set(FPU                 "fpv4-sp-d16")
+list(APPEND include_path "${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F3xx/Include")
+list(APPEND include_path "${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Core/Include")
 
 # ======================================
-# [ Select build type ]
-# - Debug
-# - RelWithDebInfo
-# - Release
+#   - 05. library_path
 # ======================================
-set(CMAKE_BUILD_TYPE    Debug)
+list(APPEND library_path "")
 
 # ======================================
-# [ Select Target Board ]
+#   - 06. source_lists
 # ======================================
-set(TARGET_BOARD        "STM32F303xE")
+# GNU Style startup
+list(APPEND source_lists "startup/GNU/startup_stm32f303xe.s")
+# stm32 startup
+list(APPEND source_lists "startup/system_stm32f3xx.c")
+# Source
+list(APPEND source_lists "Source/main.c")
 
 # ======================================
-# [ Enable CMSIS ]
+#   - 07. library_lists
 # ======================================
-set(ENABLE_CMSIS        ON)
+list(APPEND library_lists "")
 
 # ======================================
-# [ Enable HAL ]
+#   - 08. compile_definitions
 # ======================================
-set(ENABLE_HAL          OFF)
+if(${ENABLE_HAL})
+    list(APPEND compile_definitions "USE_HAL_DRIVER")
+endif()
+
+list(APPEND compile_definitions "SIGNATURE=\"Hello World!\"")
+list(APPEND compile_definitions "AUTO_CONFIG_VER=6.672")
+list(APPEND compile_definitions "CHEAT=\"Show Me The Money!\"")
 
 # ======================================
-# [ Extract Map file ]
+#   - 09. compile_option
 # ======================================
-set(EXT_MAP             ON)
+list(APPEND compile_option "")
 
 # ======================================
-# [ Extract Assemble file ]
+#   - 10. link_option
 # ======================================
-set(EXT_ASM             ON)
-
-# ======================================
-# [ Extract Binbary file ]
-# ======================================
-set(EXT_BIN             ON)
-
-# ======================================
-# [ Extract HEX file ]
-# ======================================
-set(EXT_HEX             ON)
+list(APPEND link_option "")

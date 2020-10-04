@@ -12,3 +12,6 @@ include("${CMAKE_CURRENT_LIST_DIR}/autoconfig/autoconfig.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/${COMPILER}/library.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/${COMPILER}/executable.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/${COMPILER}/extract.cmake")
+
+# Set Build Ouput Path
+set(BUILD_OUTPUT_DIR    "${CMAKE_SOURCE_DIR}/build/DebugRel")
