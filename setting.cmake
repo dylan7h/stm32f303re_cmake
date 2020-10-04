@@ -1,6 +1,8 @@
 # ======================================
 # [ Set toolchain root path  ]
 # ======================================
+# tool chain path
+# set(tools               "/usr")
 set(tools               "/usr/local/gcc-arm-none-eabi-9-2020-q2-update")
 
 # ======================================
@@ -10,7 +12,9 @@ set(tools               "/usr/local/gcc-arm-none-eabi-9-2020-q2-update")
 # - armcompiler6
 # - clang
 # ======================================
-set(COMPILER            "arm_none_eabi")
+set(COMPILER            "arm-none-eabi")
+# set(COMPILER            "clang")
+# set(GCC_TOOL_CHAIN      "/usr/local/gcc-arm-none-eabi-9-2020-q2-update")
 
 # ======================================
 # [ Select CPU ]

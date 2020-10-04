@@ -4,23 +4,23 @@
 # [O] nano.specs
 # [O] nosys.specs
 # ==========================================
-set(SPEC        nano.specs)
-if(${SPEC} STREQUAL "nano.specs")
-    # standard c library such as <stdio.h>, <stdlib.h> abs <string.h> ... 
-    list(APPEND LINK_LIBRARY "c")
-    # standard c math library such as <math.h>, <complex.h> and <fenv.h> ...
-    list(APPEND LINK_LIBRARY "m")
-    list(APPEND LINK_LIBRARY "nosys")
+# set(SPEC        nosys.specs)
+# if(${SPEC} STREQUAL "nano.specs")
+#     # standard c library such as <stdio.h>, <stdlib.h> abs <string.h> ... 
+#     list(APPEND LINK_LIBRARY "c")
+#     # standard c math library such as <math.h>, <complex.h> and <fenv.h> ...
+#     list(APPEND LINK_LIBRARY "m")
+#     list(APPEND LINK_LIBRARY "nosys")
 
-elseif(${SPEC} STREQUAL "nosys.specs")
-    list(APPEND LINK_LIBRARY        "gcc")
-    list(APPEND EXE_LINKER_FLAGS    "-nostartfiles")
-    list(APPEND EXE_LINKER_FLAGS    "-nostdlib")
-    list(APPEND EXE_LINKER_FLAGS    "-nodefaultlibs")
-    list(APPEND EXE_LINKER_FLAGS    "-static")
-else()
-    message(FATAL_ERROR "Specifications not supported")
-endif()
+# elseif(${SPEC} STREQUAL "nosys.specs")
+#     # list(APPEND LINK_LIBRARY        "gcc")
+#     list(APPEND EXE_LINKER_FLAGS    "-nostartfiles")
+#     list(APPEND EXE_LINKER_FLAGS    "-nostdlib")
+#     list(APPEND EXE_LINKER_FLAGS    "-nodefaultlibs")
+#     list(APPEND EXE_LINKER_FLAGS    "-static")
+# else()
+#     message(FATAL_ERROR "Specifications not supported")
+# endif()
 
 # ==========================================
 # [ Set Global Definitions : <compiler> -D<definitions> ]
