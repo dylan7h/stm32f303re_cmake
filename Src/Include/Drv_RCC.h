@@ -1,6 +1,18 @@
 #ifndef __DRV_RCC__H__
 #define __FRV_RCC__H__
 
+#ifndef LSE_CLOCK_VALUE
+#define LSE_CLOCK_VALUE (32768U)
+#endif  /* LSE_CLOCK_VALUE */
+
+#ifndef HSI_CLOCK_VALUE
+#define HSI_CLOCK_VALUE (8000000U)
+#endif  /* HSI_CLOCK_VALUE */
+
+#ifndef HSE_CLOCK_VALUE
+#define HSE_CLOCK_VALUE (16000000U)
+#endif  /* HSE_CLOCK_VALUE */
+
 /* RCC->CFGR - PLLSRC */
 typedef enum { 
     PLLSource_HSI_Half  = 0x0U,     /* HSI/2 used as PREDIV1 entry and PREDIV1 forced to div by 2. */

@@ -2,14 +2,6 @@
 #include "stm32f3xx.h"
 #include "Drv_RCC.h"
 
-#ifndef HSI_CLOCK_VALUE
-#define HSI_CLOCK_VALUE (8000000U)
-#endif  /* HSI_CLOCK_VALUE */
-
-#ifndef HSE_CLOCK_VALUE
-#define HSE_CLOCK_VALUE (16000000U)
-#endif  /* HSE_CLOCK_VALUE */
-
 static uint32_t Drv_RCC_AHB_GetPrescaleValue(AHBPrescaler_t eAHBPrescaler)
 {
     volatile uint32_t AHBPrescalerValue;
@@ -144,6 +136,7 @@ void Drv_RCC_AHB_SetClock(SystemClockSource_t eSystemClockSource, AHBPrescaler_t
     /* Set AHB Prescaler & Source Clock */
     RCC->CFGR &= ~(RCC_CFGR_HPRE_Msk | RCC_CFGR_SW_Msk);
     RCC->CFGR |= ((uint32_t)eSystemClockSource << RCC_CFGR_SW_Pos) | ((uint32_t)eAHBPrescaler << RCC_CFGR_HPRE_Pos);
+    while((RCC->CFGR & RCC_CFGR_SWS_Msk) != ((uint32_t)eSystemClockSource << RCC_CFGR_SWS_Pos));
 }
 
 void Drv_RCC_APB_SetClock(APBNumber_t eAPBNumber, APBPrescaler_t eAPBPrescaler)

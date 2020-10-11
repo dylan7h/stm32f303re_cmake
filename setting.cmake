@@ -3,7 +3,8 @@
 # ======================================
 # tool chain path
 # set(tools               "/usr")
-set(tools               "/usr/local/gcc-arm-none-eabi-9-2020-q2-update")
+# set(tools               "/usr/local/gcc-arm-none-eabi-9-2020-q2-update")
+set(tools               "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update")
 
 # ======================================
 # [ Select Compiler ]

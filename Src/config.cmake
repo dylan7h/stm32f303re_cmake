@@ -52,6 +52,7 @@ list(APPEND source_lists "${CMAKE_CURRENT_LIST_DIR}/Source/Drv_RCC.c")
 list(APPEND source_lists "${CMAKE_CURRENT_LIST_DIR}/Source/Drv_Systick.c")
 list(APPEND source_lists "${CMAKE_CURRENT_LIST_DIR}/Source/Drv_GPIO.c")
 list(APPEND source_lists "${CMAKE_CURRENT_LIST_DIR}/Source/Drv_USART.c")
+list(APPEND source_lists "${CMAKE_CURRENT_LIST_DIR}/Source/Svc_Debug.c")
 
 # ======================================
 #   - 07. library_lists

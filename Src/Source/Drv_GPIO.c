@@ -51,27 +51,35 @@ void Drv_GPIO_Initialize(GPIO_t* pGPIO)
 
     Drv_RCC_AHB_ControlPeripheral(BUS_Control_Enable, eAHBPeripheral);
 
-    pGPIOX->MODER   = (uint32_t)pGPIO->eMode;
-    pGPIOX->OTYPER  = (uint32_t)pGPIO->eOutputType;
-    pGPIOX->OSPEEDR = (uint32_t)pGPIO->eOutputSpeed;
-    pGPIOX->PUPDR   = (uint32_t)pGPIO->eDriveStrength;
-
-    if(pGPIO->eMode == GPIO_Mode_AlternateFunction)
+    for(i = 0U; i < 16U; i++)
     {
-        for(i = 0; i < 16; i++)
+        if(( ( (uint32_t)pGPIO->eGPIO_Pins >> i ) & 0x1U ) == 0x1U)
         {
-            if(( ( (uint32_t)pGPIO->eGPIO_Pins >> i ) & 0x1U ) == 0x1U)
-            {
-                if(i < 8) {
-                    pos = i * 4U;
-                    pGPIOX->AFR[0] &= ~(0xF << pos);
-                    pGPIOX->AFR[0] |= ((uint32_t)pGPIO->eGPIO_AlternateFunction << pos);
-                }
-                else {
-                    pos = (i - 8) * 4U;
-                    pGPIOX->AFR[1] &= ~(0xF << pos);
-                    pGPIOX->AFR[1] |= ((uint32_t)pGPIO->eGPIO_AlternateFunction << pos);
-                }
+            pos = (i * 2U);
+            pGPIOX->MODER   &= ~(0x03U << pos);
+            pGPIOX->MODER   |= ((uint32_t)pGPIO->eMode << pos);
+
+            pos = i;
+            pGPIOX->OTYPER   &= ~(0x1U << pos);
+            pGPIOX->OTYPER   |= ((uint32_t)pGPIO->eOutputType << pos);
+
+            pos = (i * 2U);
+            pGPIOX->OSPEEDR   &= ~(0x03U << pos);
+            pGPIOX->OSPEEDR   |= ((uint32_t)pGPIO->eOutputSpeed << pos);
+
+            pos = (i * 2U);
+            pGPIOX->PUPDR   &= ~(0x03U << pos);
+            pGPIOX->PUPDR   |= ((uint32_t)pGPIO->eDriveStrength << pos);
+
+            if(i < 8) {
+                pos = i * 4U;
+                pGPIOX->AFR[0] &= ~(0xF << pos);
+                pGPIOX->AFR[0] |= ((uint32_t)pGPIO->eGPIO_AlternateFunction << pos);
+            }
+            else {
+                pos = (i - 8) * 4U;
+                pGPIOX->AFR[1] &= ~(0xF << pos);
+                pGPIOX->AFR[1] |= ((uint32_t)pGPIO->eGPIO_AlternateFunction << pos);
             }
         }
     }

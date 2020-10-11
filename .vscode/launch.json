@@ -19,11 +19,17 @@
                 "${workspaceRoot}/Tools/Debug/scripts/board/st_nucleo_f3.cfg"
             ],
             "toolchainPrefix": "arm-none-eabi",
-            "armToolchainPath": "/usr/local/gcc-arm-none-eabi-9-2020-q2-update/bin/",
+            "windows": {
+                "armToolchainPath": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update/bin/"
+            },
+            "linux": {
+                "armToolchainPath": "/usr/local/gcc-arm-none-eabi-9-2020-q2-update/bin/",
+            },
             "runToMain": true,
             "postLaunchCommands": [
-                "monitor arm semihosting on"
-            ]
+                // "monitor arm semihosting on"
+            ],
+            "preLaunchTask": "build"
         }
     ]
 }
