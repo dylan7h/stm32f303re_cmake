@@ -38,6 +38,7 @@ function(build_executable working_dir target_name include_paths library_paths li
     # Executable Target Definition
     # =====================================================
     # Executable Target
+    message(STATUS ${source_lists})
     add_executable(${target_name} ${source_lists})
     # Override RUNTIME_OUTPUT_DIRECTORY
     set_target_properties(${target_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${working_dir})

@@ -5,7 +5,7 @@
 # [O] nosys.specs  - to use standard library
 # [O] rdimon.specs - to use semihosting printf
 # ==========================================
-set(SPEC        rdimon.specs)
+set(SPEC        nano.specs)
 if(${SPEC} STREQUAL "nano.specs")
     # standard c library such as <stdio.h>, <stdlib.h> abs <string.h> ... 
     list(APPEND LINK_LIBRARY "c")
