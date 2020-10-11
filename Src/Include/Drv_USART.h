@@ -8,6 +8,13 @@ typedef enum {
     USART_Channel_4 = 3,
     USART_Channel_5 = 4,
 } USART_Channel_t;
+
+typedef enum {
+    USART_Async_None            = 0,
+    USART_Async_Interrupt_Base  = 1,
+    USART_Async_DMA_Base        = 2
+} USART_Async_t;
+
 typedef enum {
     USART_Baudrate_110      = 110,
     USART_Baudrate_300      = 300,
@@ -26,26 +33,27 @@ typedef enum {
 } USART_Baudrate_t;
 
 typedef enum {
-    USART_Parity_None   = 0,
+    USART_Parity_Even   = 0,
     USART_Parity_Odd    = 1,
-    USART_Parity_Even   = 2,
+    USART_Parity_None   = 2
 } USART_Parity_t;
 
 typedef enum {
-    USART_Width_7 = 0,
     USART_Width_8 = 0,
-    USART_Width_9 = 0
+    USART_Width_9 = 1,
+    USART_Width_7 = 2
 } USART_Width_t;
 typedef enum {
     USART_Stop_1    = 0,
-    USART_Stop_1_5  = 0,
-    USART_Stop_2    = 0,
+    USART_Stop_0_5  = 1,
+    USART_Stop_2    = 2,
+    USART_Stop_1_5  = 3
 } USART_Stop_t;
 
 typedef struct
 {
     USART_Channel_t         eUSART_Channel;
-    uint32_t                bInterrupt;
+    USART_Async_t           eUSART_Async;
     USART_Baudrate_t        eUSART_Baudrate;
     RCC_USART_SourceClock_t eRCC_USART_SourceClock;
     USART_Width_t           eUSART_Width;

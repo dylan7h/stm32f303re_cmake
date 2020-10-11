@@ -7,12 +7,12 @@
 
 USART_t tUSART = {
     .eUSART_Channel             = USART_Channel_2,
-    .bInterrupt                 = 0,
+    .eUSART_Async               = USART_Async_None,
     .eUSART_Baudrate            = USART_Baudrate_115200,
     .eRCC_USART_SourceClock     = RCC_USART_SourceClock_PCLK,
-    .eUSART_Width               = 0,
-    .eUSART_Parity              = 0,
-    .eUSART_Stop                = 0
+    .eUSART_Width               = USART_Width_8,
+    .eUSART_Parity              = USART_Parity_None,
+    .eUSART_Stop                = USART_Stop_1
 };
 
 void Svc_Debug_Initialize()

@@ -37,7 +37,7 @@ int main(void)
     APB1_Clock      = Drv_RCC_APB_GetClock(APBNumber_1);
     APB2_Clock      = Drv_RCC_APB_GetClock(APBNumber_2);
 
-    Drv_Systick_Initialize(8000000);
+    Drv_Systick_Initialize(AHB_Clock);
     Drv_GPIO_Initialize(&tGPIO);
     Svc_Debug_Initialize();
 
@@ -53,7 +53,6 @@ int main(void)
     while(1)
     {
         Drv_Systick_Delau_ms(1000);
-        // for(count = 0; count < 8000000; count++);
         if(bFlag) {
             Drv_GPIO_SetPins(GPIO_PORT_A, GPIO_PIN_5);
             bFlag = !bFlag;

@@ -29,6 +29,9 @@
             "postLaunchCommands": [
                 // "monitor arm semihosting on"
             ],
+            "graphConfig": [
+                
+            ],
             "preLaunchTask": "build"
         }
     ]
