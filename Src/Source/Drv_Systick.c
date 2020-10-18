@@ -17,7 +17,10 @@ void Drv_Systick_Delau_ms(uint32_t ms)
     SysTick->VAL = 0;
     SysTick->CTRL |= (SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk);
 
-    while(gCount_us != 0U);
+    while(gCount_us != 0U)
+    {
+        __WFI();
+    }
 
     SysTick->CTRL &= ~(SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk);
 }
@@ -29,7 +32,10 @@ void Drv_Systick_Delau_us(uint32_t us)
     SysTick->VAL = 0;
     SysTick->CTRL |= (SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk);
 
-    while(gCount_us != 0U);
+    while(gCount_us != 0U)
+    {
+        __WFI();
+    }
 
     SysTick->CTRL &= ~(SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk);
 }

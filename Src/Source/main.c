@@ -41,14 +41,14 @@ int main(void)
     Drv_GPIO_Initialize(&tGPIO);
     Svc_Debug_Initialize();
 
-    Svc_Debug_Printf("=====================================================\r\n");
-    Svc_Debug_Printf("           STM32F303RE System Information            \r\n");
-    Svc_Debug_Printf("=====================================================\r\n");
-    Svc_Debug_Printf("PLL : %ld [MHz]\r\n", PLL_Clock / 1000000);
-    Svc_Debug_Printf("SYS : %ld [MHz]\r\n", System_Clock / 1000000);
-    Svc_Debug_Printf("AHB : %ld [MHz]\r\n", AHB_Clock / 1000000);
-    Svc_Debug_Printf("APB1: %ld [MHz]\r\n", APB1_Clock / 1000000);
-    Svc_Debug_Printf("APB2: %ld [MHz]\r\n", APB2_Clock / 1000000);
+    DEBUGMSG(MSGINFO,   "=====================================================\r\n");
+    DEBUGMSG(MSG_Blue,  "           STM32F303RE System Information            \r\n");
+    DEBUGMSG(MSGINFO,   "=====================================================\r\n");
+    DEBUGMSG(MSGWARN,   "PLL : %ld [MHz]\r\n", PLL_Clock / 1000000);
+    DEBUGMSG(MSGWARN,   "SYS : %ld [MHz]\r\n", System_Clock / 1000000);
+    DEBUGMSG(MSGWARN,   "AHB : %ld [MHz]\r\n", AHB_Clock / 1000000);
+    DEBUGMSG(MSGWARN,   "APB1: %ld [MHz]\r\n", APB1_Clock / 1000000);
+    DEBUGMSG(MSGWARN,   "APB2: %ld [MHz]\r\n", APB2_Clock / 1000000);
 
     while(1)
     {

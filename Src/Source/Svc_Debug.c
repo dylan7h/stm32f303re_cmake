@@ -4,6 +4,7 @@
 #include "Drv_RCC.h"
 #include "Drv_GPIO.h"
 #include "Drv_USART.h"
+#include "Svc_Debug.h"
 
 USART_t tUSART = {
     .eUSART_Channel             = USART_Channel_2,
@@ -32,7 +33,7 @@ void Svc_Debug_Initialize()
     Drv_USART_Initialize(&tUSART);
 }
 
-int Svc_Debug_Printf(const char* format, ...)
+int Svc_Debug_Printf(const char* cond, const char* format, ...)
 {
     va_list va;
     int length;
@@ -42,7 +43,9 @@ int Svc_Debug_Printf(const char* format, ...)
     length = vsnprintf(buff, sizeof(buff), format, va);
     va_end(va);
 
+    Drv_USART_Send(&tUSART, (uint8_t*)cond, strlen(cond));
     Drv_USART_Send(&tUSART, (uint8_t*)buff, length);
+    Drv_USART_Send(&tUSART, (uint8_t*)MSG_Color_Off, strlen(MSG_Color_Off));
 
     return length;
 }
